@@ -32,14 +32,37 @@ namespace PdfCreate.Controllers
         }
 
         [HttpGet("createpfd")]
-        public async Task<IActionResult> createpdf([FromQuery] int cantidadProducto, [FromQuery] string color)
+        public async Task<IActionResult> createpdf([FromQuery] int cantidadProducto, [FromQuery] string marca)
         {
             var _reporteService = new ReporteService();
+            string color = "#C61935";
             List<Producto> lista = new List<Producto>();
 
             for (int i = 1;i < cantidadProducto; i++)
             {
                 lista.Add(new Producto() { Id = i.ToString(), Nombre = "Producto_"+i.ToString(), fecha_pago="2026-09-01",Precio = 336.59*(i*10) });
+            }
+
+            switch(marca.ToUpper())
+            {
+                case "NISSAN":
+                    color = "#C61935";
+                    break;
+                case "RENAULT":
+                    color = "#F08A0C ";
+                    break;
+                case "MITSUBISHI":
+                    color = "#E60012";
+                    break;
+                case "INFINITI":
+                    color = "#9c9c9c";
+                    break;
+                case "SEMINUEVOS":
+                    color = "#C3002F";
+                    break;
+                default:
+                    color = "#9b9b9b";
+                    break;
             }
 
             var data = _reporteService.GenerarPdfDinamico(lista,color);

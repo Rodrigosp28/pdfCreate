@@ -96,13 +96,13 @@ namespace PdfCreate.Service
                                 // Totales grandes resaltados
                                 rightCol.Item().AlignCenter().PaddingTop(20).Text(x =>
                                 {
-                                    x.Span("Mensualidad: ").FontSize(16).SemiBold().FontColor(Colors.Red.Medium);
+                                    x.Span("Mensualidad: ").FontSize(16).SemiBold().FontColor(color);
                                     x.Span("$9,402.88").FontSize(16).SemiBold();
                                 });
 
                                 rightCol.Item().PaddingTop(5).AlignCenter().Text(x =>
                                 {
-                                    x.Span("Plazo: ").FontSize(14).SemiBold().FontColor(Colors.Red.Medium);
+                                    x.Span("Plazo: ").FontSize(14).SemiBold().FontColor(color);
                                     x.Span("72 meses").FontSize(14).SemiBold();
                                 });
 
@@ -201,7 +201,7 @@ namespace PdfCreate.Service
                 });
             });
             // Muestra en la aplicación Companion (reemplaza al antiguo Previewer)
-            documento.ShowInCompanion();
+            //documento.ShowInCompanion();
             // Retornar como array de bytes para la Web API
             return documento.GeneratePdf();
         }
